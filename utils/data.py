@@ -412,9 +412,12 @@ def get_date_range() -> tuple:
     """Get the min and max dates in the warehouse."""
     con = get_connection()
     row = pd.read_sql("""
-        SELECT MIN(d.full_date) AS min_date, MAX(d.full_date) AS max_date
+        SELECT MIN(DATE(d.full_date)) AS min_date, MAX(DATE(d.full_date)) AS max_date
         FROM fact_sales f
         JOIN dim_date d ON f.date_key = d.date_key
     """, con).iloc[0]
     con.close()
-    return row["min_date"], row["max_date"]
+    # Ensure clean YYYY-MM-DD strings regardless of SQLite datetime format
+    min_date = str(row["min_date"])[:10]
+    max_date = str(row["max_date"])[:10]
+    return min_date, max_date
