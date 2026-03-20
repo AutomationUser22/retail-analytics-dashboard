@@ -8,11 +8,11 @@ Interactive BI dashboard built on a star schema data warehouse, powered by Strea
 
 ## Live Demo
 
-> **[Launch Dashboard on Streamlit Cloud](https://retail-analytics-dashboard.streamlit.app)** *(update this URL after deployment)*
+> **[Launch Dashboard on Streamlit Cloud](https://retail-analytics-dashboard-vinayak.streamlit.app/)**
 
 ## What This Does
 
-Connects directly to the warehouse built by the [Retail Data Warehouse ETL Pipeline](https://github.com/09vinayak/retail-data-warehouse-etl) and provides 5 interactive analytics pages:
+Connects directly to the warehouse built by the [Retail Data Warehouse ETL Pipeline](https://github.com/AutomationUser22/retail-data-warehouse-etl) and provides 5 interactive analytics pages:
 
 | Page | What It Shows | Business Question |
 |------|---------------|-------------------|
@@ -27,7 +27,7 @@ Connects directly to the warehouse built by the [Retail Data Warehouse ETL Pipel
 ```
 ┌──────────────────────┐     ┌──────────────────────┐     ┌──────────────────────┐
 │   ETL Pipeline       │     │   SQLite Warehouse   │     │   Streamlit App      │
-│   (Project 1)        │────▶│   Star Schema        │────▶│   5 Dashboard Pages  │
+│   (retail-data-project)│──▶│   Star Schema        │────▶│   5 Dashboard Pages  │
 │   Extract/Transform/ │     │   4 dims + 1 fact    │     │   Plotly Charts      │
 │   Load/Quality       │     │   24 quality checks  │     │   Interactive Filters │
 └──────────────────────┘     └──────────────────────┘     └──────────────────────┘
@@ -57,15 +57,15 @@ Connects directly to the warehouse built by the [Retail Data Warehouse ETL Pipel
 
 ```bash
 # Clone
-git clone https://github.com/09vinayak/retail-analytics-dashboard.git
+git clone https://github.com/AutomationUser22/retail-analytics-dashboard.git
 cd retail-analytics-dashboard
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Generate the warehouse (if you don't have one)
-# Option A: Copy from Project 1 after running its pipeline
-# Option B: Clone Project 1 and run: python -m src.pipeline
+# Option A: Copy from retail-data-warehouse-etl after running its pipeline
+# Option B: Clone retail-data-warehouse-etl and run: python -m src.pipeline
 
 # Launch the dashboard
 streamlit run app.py
@@ -99,7 +99,7 @@ The dashboard will be live at `https://your-app-name.streamlit.app` within minut
 3. **Date range filter on every page** — Every metric is time-sliceable. Period-over-period comparison on KPIs.
 4. **Data quality as a first-class page** — Not an afterthought. Shows the warehouse is trustworthy before anyone looks at the analytics.
 
-## Connection to Project 1
+## Connection to retail-data-warehouse-etl
 
 This dashboard reads directly from `warehouse.db` — the output of the ETL pipeline. If you rerun the pipeline with new data, the dashboard automatically reflects the updated warehouse on next page load. This mirrors the production pattern of a BI tool (QuickSight, Tableau) sitting on top of a data warehouse (Redshift, Snowflake).
 
